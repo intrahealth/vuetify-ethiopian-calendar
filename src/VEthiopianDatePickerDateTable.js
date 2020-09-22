@@ -8,6 +8,13 @@ export default {
         formatter() {
             return this.format || createFormatter('day', this.currentLocale);
         },
+        weekdayFormatter() {
+            return this.weekdayFormat || createFormatter('weekday', this.currentLocale);
+        },
+        weekDays() {
+          const first = parseInt( this.firstDayOfWeek, 10 )
+          return Array(7).fill().map( (x,i) => this.weekdayFormatter(`2013-01-${first + i + 10}`))
+        }
     },
     methods: {
         weekDaysBeforeFirstDayOfTheMonth() {

@@ -1,12 +1,16 @@
-# a vuetify date picker for umalqura calendar
+# a vuetify date picker for Ethiopian calendar
+
+this component is based on [umalqura calendar component](https://github.com/tala424/vuetify-umalqura)
 
 this component extends [vuetify's v-date-picker](https://vuetifyjs.com/en/components/date-pickers/) 
 
 all of vuetify's v-date-picker props, slots, etc applies to this component
 
-this component depends on [@umalqura/core](https://github.com/umalqura/umalqura) and [vuetify](https://vuetifyjs.com/) you must install them before using it
+this component depends on [vuetify](https://vuetifyjs.com/) you must install them before using it
 
 ## Installation
+
+**This is still a work in progress and these instructions need to be updated.**
 
 ```bash
 npm i vuetify-umalqura

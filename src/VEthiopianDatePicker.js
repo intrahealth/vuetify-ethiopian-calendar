@@ -1,14 +1,12 @@
 import { VDatePicker } from "vuetify/lib";
 
-import umalqura from '@umalqura/core';
+import VEthiopianDatePickerHeader from './VEthiopianDatePickerHeader'
 
-import VHijriDatePickerHeader from './VHijriDatePickerHeader'
+import VEthiopianDatePickerMonthTable from './VEthiopianDatePickerMonthTable'
 
-import VHijriDatePickerMonthTable from './VHijriDatePickerMonthTable'
+import VEthiopianDatePickerDateTable from './VEthiopianDatePickerDateTable'
 
-import VHijriDatePickerDateTable from './VHijriDatePickerDateTable'
-
-import { createFormatter, pad, createItemTypeListeners, daysInMonth, wrapInArray } from './util';
+import { createFormatter, pad, daysInMonth, wrapInArray, ETDate } from './util';
 
 function sanitizeDateString(dateString, type) {
     const [year, month = 1, date = 1] = dateString.split("-");
@@ -24,23 +22,23 @@ function sanitizeDateString(dateString, type) {
 
 export default {
     extends: VDatePicker,
-    name: "VHijriDatePicker",
+    name: "VEthiopianDatePicker",
     props: {
         max: {
             type: String,
             validator: dateString => {
-                return Number(sanitizeDateString(dateString, 'year')) <= umalqura.max.hy
+                return Number(sanitizeDateString(dateString, 'year')) <= 3000
             }
         },
         min: {
             type: String,
             validator: dateString => {
-                return Number(sanitizeDateString(dateString, 'year')) >= umalqura.min.hy
+                return Number(sanitizeDateString(dateString, 'year')) >= 1
             }
         },
     },
     data() {
-        const now = umalqura();
+      const now = new ETDate()
         return {
             activePicker: this.type.toUpperCase(),
             inputDay: null,
@@ -54,7 +52,7 @@ export default {
                 }
 
                 const multipleValue = wrapInArray(this.value)
-                const date = multipleValue[multipleValue.length - 1] || (typeof this.showCurrent === 'string' ? this.showCurrent : `${now.hy}-${now.hm}`)
+                const date = multipleValue[multipleValue.length - 1] || (typeof this.showCurrent === 'string' ? this.showCurrent : `${now.year}-${now.month}`)
                 return sanitizeDateString(date, this.type === 'date' ? 'month' : 'year');
             })(),
         };
@@ -62,7 +60,7 @@ export default {
     computed: {
         current() {
             if (this.showCurrent === true) {
-                return sanitizeDateString(`${this.now.hy}-${this.now.hm}-${this.now.hd}`, this.type);
+                return sanitizeDateString(`${this.now.year}-${this.now.month}-${this.now.date}`, this.type);
             }
             return this.showCurrent || null;
         },
@@ -76,19 +74,19 @@ export default {
         },
 
         minMonth() {
-            return this.min ? sanitizeDateString(this.min, 'month') : umalqura.min.format('yyyy-MM');
+            return this.min ? sanitizeDateString(this.min, 'month') : "1900-01"
         },
       
         maxMonth() {
-            return this.max ? sanitizeDateString(this.max, 'month') : umalqura.max.subtract(1,'year').format('yyyy-MM');
+            return this.max ? sanitizeDateString(this.max, 'month') : "2100-13"
         },
       
         minYear() {
-            return this.min ? sanitizeDateString(this.min, 'year') : umalqura.min.format('yyyy');
+            return this.min ? sanitizeDateString(this.min, 'year') : "1900"
         },
       
         maxYear() {
-            return this.max ? sanitizeDateString(this.max, 'year') : umalqura.max.subtract(1,'year').format('yyyy')
+            return this.max ? sanitizeDateString(this.max, 'year') : "2100"
         },
       
         formatters() {
@@ -151,7 +149,7 @@ export default {
         },
         
         genTableHeader() {
-            return this.$createElement(VHijriDatePickerHeader, {
+            return this.$createElement(VEthiopianDatePickerHeader, {
                 props: {
                     nextIcon: this.nextIcon,
                     color: this.color,
@@ -176,7 +174,7 @@ export default {
         },
 
         genDateTable() {
-            return this.$createElement(VHijriDatePickerDateTable, {
+            return this.$createElement(VEthiopianDatePickerDateTable, {
                 props: {
                     allowedDates: this.allowedDates,
                     color: this.color,
@@ -204,13 +202,14 @@ export default {
                 on: {
                     input: this.dateClick,
                     'update:table-date': value => this.tableDate = value,
-                    ...createItemTypeListeners(this, ':date')
+                    'click:date': value => this.$emit('click:date', value),
+                    'dblclick:date': value => this.$emit('dblclick:date', value),
                 }
             });
         },
         
         genMonthTable() {
-            return this.$createElement(VHijriDatePickerMonthTable, {
+            return this.$createElement(VEthiopianDatePickerMonthTable, {
                 props: {
                     allowedDates: this.type === 'month' ? this.allowedDates : null,
                     color: this.color,
@@ -234,7 +233,8 @@ export default {
                 on: {
                     input: this.monthClick,
                     'update:table-date': value => this.tableDate = value,
-                    ...createItemTypeListeners(this, ':month')
+                    'click:month': value => this.$emit('click:month', value),
+                    'dblclick:month': value => this.$emit('dblclick:month', value),
                 }
             });
         },
@@ -249,9 +249,9 @@ export default {
                     this.inputDay = parseInt(array[2], 10);
                 }
             } else {
-                this.inputYear = this.inputYear || this.now.hy;
-                this.inputMonth = this.inputMonth == null ? this.inputMonth : this.now.hm;
-                this.inputDay = this.inputDay || this.now.hd;
+                this.inputYear = this.inputYear || this.now.year;
+                this.inputMonth = this.inputMonth == null ? this.inputMonth : this.now.month;
+                this.inputDay = this.inputDay || this.now.date;
             }
         },
     }

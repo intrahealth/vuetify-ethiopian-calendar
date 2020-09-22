@@ -4,9 +4,9 @@ import resolve from '@rollup/plugin-node-resolve';
 export default {
     input: 'src/index.js',
     output: {
-        name: 'VHijriDatePicker',
+        name: 'VEthiopianDatePicker',
         exports: 'named',
-        file: 'dist/v-hijri-date-picker.esm.js',
+        file: 'dist/v-ethiopian-date-picker.esm.js',
         format: 'esm'// "amd", "cjs", "system", "", "iife" or "umd"
     },
     plugins: [
@@ -19,7 +19,7 @@ export default {
     ],
     external: [
         'vuetify/lib',
-        '@umalqura/core',
+        'ethiopic-calendar',
         'vuetify/lib/components/VDatePicker/util',
         'vuetify/lib/components/VDatePicker/util/isDateAllowed'
     ]

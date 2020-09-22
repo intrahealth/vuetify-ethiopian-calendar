@@ -1,3 +1,3 @@
-import VHijriDatePicker from './VHijriDatePicker'
+import VEthiopianDatePicker from './VEthiopianDatePicker'
 
-export default VHijriDatePicker
+export default VEthiopianDatePicker

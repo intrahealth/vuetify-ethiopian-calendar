@@ -1,30 +1,28 @@
 {
-  "name": "vuetify-umalqura",
+  "name": "vuetify-ethiopian-calendar",
   "version": "0.0.4",
-  "description": "a vuetify date picker for umalqura calendar",
-  "main": "dist/v-hijri-date-picker.esm.js",
-  "module": "dist/v-hijri-date-picker.esm.js",
+  "description": "a vuetify date picker for Ethiopian calendar",
+  "main": "dist/v-etihiopian-date-picker.esm.js",
+  "module": "dist/v-etihiopian-date-picker.esm.js",
   "scripts": {
     "build": "rollup --config",
     "lint": "eslint ./src --fix"
   },
-  "author": "Talal Alenizi",
   "license": "MIT",
   "keywords": [
     "vuetify",
     "vue",
     "component",
     "calendar",
-    "umalqura",
-    "islamic"
+    "ethiopia"
   ],
-  "homepage": "https://github.com/talal424/vuetify-umalqura",
+  "homepage": "https://github.com/intrahealth/vuetify-ethiopian-calendar",
   "bugs": {
-    "url": "https://github.com/talal424/vuetify-umalqura/issues"
+    "url": "https://github.com/intrahealth/vuetify-ethiopian-calendar/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/talal424/vuetify-umalqura.git"
+    "url": "git://github.com/intrahealth/vuetify-ethiopian-calendar.git"
   },
   "browserslist": [
     "> 1%",
@@ -41,6 +39,10 @@
   "peerDependencies": {
     "vue": "^2.6.11",
     "vuetify": "^2.3.6",
-    "@umalqura/core": "0.0.7"
+    "ethiopic-calendar": "^2.0.0"
+  },
+  "dependencies": {
+    "vue": "^2.6.12",
+    "vuetify": "^2.3.10"
   }
 }

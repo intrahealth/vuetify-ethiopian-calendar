@@ -12,12 +12,13 @@ export default {
     methods: {
         genTBody() {
             const children = [];
-            const cols = Array(3).fill(null);
-            const rows = 12 / cols.length;
+            const cols = Array(4).fill(null);
+            const rows = 13 / cols.length;
     
             for (let row = 0; row < rows; row++) {
                 const tds = cols.map((_, col) => {
                     const month = row * cols.length + col;
+                    if ( month > 12 ) return
                     const date = `${this.displayedYear}-${pad(month + 1)}`;
                     return this.$createElement('td', { key: month }, [this.genButton(date, false, 'month', this.formatter)]);
                 });
