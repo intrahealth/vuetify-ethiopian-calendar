@@ -1,9 +1,9 @@
 {
   "name": "vuetify-ethiopian-calendar",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "a vuetify date picker for Ethiopian calendar",
-  "main": "dist/v-etihiopian-date-picker.esm.js",
-  "module": "dist/v-etihiopian-date-picker.esm.js",
+  "main": "dist/v-ethiopian-date-picker.esm.js",
+  "module": "dist/v-ethiopian-date-picker.esm.js",
   "scripts": {
     "build": "rollup --config",
     "lint": "eslint ./src --fix"
@@ -40,9 +40,5 @@
     "vue": "^2.6.11",
     "vuetify": "^2.3.6",
     "ethiopic-calendar": "^2.0.0"
-  },
-  "dependencies": {
-    "vue": "^2.6.12",
-    "vuetify": "^2.3.10"
   }
 }
