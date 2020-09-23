@@ -1,6 +1,6 @@
 {
   "name": "vuetify-ethiopian-calendar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a vuetify date picker for Ethiopian calendar",
   "main": "dist/v-ethiopian-date-picker.esm.js",
   "module": "dist/v-ethiopian-date-picker.esm.js",
